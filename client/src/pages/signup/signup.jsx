@@ -3,6 +3,7 @@ import instance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [signUpData, setSignUpData] = useState({
     fullName: "",
     userName: "",
@@ -15,9 +16,14 @@ const Signup = () => {
     event.preventDefault();
 
     try {
-      const { data } = await instance.post("/signup", { ...signUpData });
-
-      useNavigate("/login");
+      const { data } = await instance.post("signup", { ...signUpData });
+      // const { data } = await axios({
+      //   url: import.meta.env.VITE_URL_SERVER + "signup",
+      //   methode: "POST",
+      //   data: signUpData,
+      // });
+      console.log("🚀 ~ handleSubmit ~ data:", data);
+      navigate("/login");
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error);
     }
@@ -58,7 +64,7 @@ const Signup = () => {
               </div>
             </div>
           </div>
-          <form className="sm:p-6 p-4 w-full">
+          <form onSubmit={handleSubmit} className="sm:p-6 p-4 w-full">
             <div className="mb-6">
               <h3 className="text-blue-500 text-3xl font-extrabold max-md:text-center">
                 Register
@@ -136,8 +142,7 @@ const Signup = () => {
             </div>
             <div className="mt-10">
               <button
-                type="button"
-                onSubmit={handleSubmit}
+                type="submit"
                 className="min-w-[150px] py-3 px-4 text-sm font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all">
                 Sign up
               </button>
