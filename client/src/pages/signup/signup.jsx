@@ -22,7 +22,7 @@ const Signup = () => {
       //   methode: "POST",
       //   data: signUpData,
       // });
-      console.log("🚀 ~ handleSubmit ~ data:", data);
+      // console.log("🚀 ~ handleSubmit ~ data:", data);
       navigate("/login");
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error);
