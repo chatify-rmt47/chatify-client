@@ -6,7 +6,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [signUpData, setSignUpData] = useState({
     fullName: "",
-    userName: "",
+    username: "",
     password: "",
     confirmPassword: "",
     gender: "",
@@ -44,24 +44,6 @@ const Signup = () => {
                   account.
                 </p>
               </div>
-              <div>
-                <h4 className="text-white text-lg font-semibold">
-                  Simple &amp; Secure Registration
-                </h4>
-                <p className="text-[13px] text-white mt-2">
-                  Our registration process is designed to be straightforward and
-                  secure. We prioritize your privacy and data security.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-white text-lg font-semibold">
-                  Terms and Conditions Agreement
-                </h4>
-                <p className="text-[13px] text-white mt-2">
-                  Require users to accept the terms and conditions of your
-                  service during registration.
-                </p>
-              </div>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="sm:p-6 p-4 w-full">
@@ -87,11 +69,11 @@ const Signup = () => {
               <div>
                 <label className="text-sm mb-2 block">Username</label>
                 <input
-                  name="userName"
+                  name="username"
                   type="text"
-                  value={signUpData.userName}
+                  value={signUpData.username}
                   onChange={(e) =>
-                    setSignUpData({ ...signUpData, userName: e.target.value })
+                    setSignUpData({ ...signUpData, username: e.target.value })
                   }
                   className="bg-gray-100 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
                   placeholder="Enter username"
