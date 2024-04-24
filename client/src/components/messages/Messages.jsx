@@ -32,7 +32,7 @@ const Messages = () => {
                 if (data.error) throw new Error(data.error);
                 dispatch(setMessages(data));
             } catch (error) {
-                toast.error(error.message);
+                toast.error(error.response.data.message);
             } finally {
                 setLoading(false);
             }
