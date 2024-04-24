@@ -1,15 +1,24 @@
 import { BiLogOut } from "react-icons/bi";
-// import useLogout from "../../hooks/useLogout";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const LogoutButton = () => {
-    // const { loading, logout } = useLogout();
+  const { setAuthUser } = useAuthContext();
+  const navigate = useNavigate();
 
-    return (
-        <div className="mt-auto">
-            <BiLogOut className="w-6 h-6 text-white cursor-pointer" />
+  const logoutHandler = () => {
+    localStorage.removeItem("chat-user");
+    setAuthUser(null);
+    navigate("/login");
+  };
 
-            {/* <span className="loading loading-spinner"></span> */}
-        </div>
-    );
+  return (
+    <div className="mt-auto">
+      <BiLogOut
+        className="w-6 h-6 text-white cursor-pointer"
+        onClick={logoutHandler}
+      />
+    </div>
+  );
 };
 export default LogoutButton;

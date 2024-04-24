@@ -3,6 +3,7 @@ import instance from "../../utils/axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../../contexts/AuthContext";
+import image from "../../assets/logo_chat-removebg-preview.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,13 +32,8 @@ const Login = () => {
       <div className="font-sans text-#333">
         <div className="grid lg:grid-cols-2 gap-4 bg-gradient-to-r from-blue-500 to-blue-700 sm:p-8 p-4 h-[320px]">
           <div>
-            <a href="javascript:void(0)">
-              <img
-                src="https://cdn.discordapp.com/attachments/1232178252567543858/1232359810901606441/logo_chat-removebg-preview.png?ex=66292c03&is=6627da83&hm=714ef2a5fecc509e148a91af2d64c85ecf8f5104d52ec9be63218e6a862a63d1&"
-                alt="logo"
-                className="w-40"
-              />
-            </a>
+            <img src={image} alt="logo" className="w-40" />
+
             <div className="max-w-lg mt-16 px-6 max-lg:hidden">
               <h3 className="text-3xl font-bold text-white">Login</h3>
               <p className="text-sm mt-4 text-white">
