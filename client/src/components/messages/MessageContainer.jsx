@@ -1,17 +1,17 @@
-import { useAuthContext } from "../../contexts/AuthContext";
-import MessageInput from "./MessageInput";
-import Messages from "./Messages";
-import { TiMessages } from "react-icons/ti";
-import { useSelector } from "react-redux";
+import { useAuthContext } from '../../contexts/AuthContext';
+import MessageInput from './MessageInput';
+import Messages from './Messages';
+import { TiMessages } from 'react-icons/ti';
+import { useSelector } from 'react-redux';
 
 const MessageContainer = () => {
   const selectedConversation = useSelector(
     (state) => state.conversation.selectedConversation
   );
-  console.log(selectedConversation, "coversation");
+  console.log(selectedConversation, 'coversation');
 
   return (
-    <div className="md:min-w-[1400px] flex flex-col">
+    <div className="md:min-w-[150vh] flex flex-col">
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (

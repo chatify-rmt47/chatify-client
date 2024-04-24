@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-// import toast from "react-hot-toast";
-// import axios from "axios";
+import toast from "react-hot-toast";
 import dataUser from "../db/userdata.json";
 import instance from "../utils/axios";
 
@@ -17,24 +16,16 @@ const useGetConversations = () => {
 
                 const { data } = await instance({
                     method: "get",
-                    url: "get-user",
+                    url: "users",
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
                 console.log(data, "data user from db");
-                //  console.log(dataUser, "data user");
-                //  data = await res.json();
 
-                //  if (data.error) {
-                //    //   throw new Error(data.error);
-                // 	console.log(error);
-                //  }
                 setConversations(data);
-                //  setConversations(dataUser);
             } catch (error) {
-                console.log(error);
-                //  toast.error(error.message);
+                toast.error(error.response.data.message);
             } finally {
                 setLoading(false);
             }
