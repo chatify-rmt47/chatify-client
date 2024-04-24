@@ -44,7 +44,7 @@
 import { setSelectedConversation } from "../../store/conversationSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const Conversation = ({ conversation, lastIdx }) => {
+const Conversation = ({ conversation, lastIdx, emoji }) => {
     const dispatch = useDispatch();
     const selectedConversation = useSelector(
         (state) => state.conversation.selectedConversation
