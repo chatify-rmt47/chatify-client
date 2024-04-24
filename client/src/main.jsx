@@ -6,11 +6,11 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { AuthContextProvider } from "./contexts/AuthContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+    // <React.StrictMode>
     <Provider store={store}>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
+        <AuthContextProvider>
+            <App />
+        </AuthContextProvider>
     </Provider>
-  </React.StrictMode>
+    // </React.StrictMode>
 );
