@@ -1,19 +1,29 @@
-import React, { useState } from "react";
-import instance from "../../utils/axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import instance from '../../utils/axios';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [loginData, setLoginData] = useState({ username: '', password: '' });
+  const [loading, setLoading] = useState(false);
+  const { setAuthUser } = useAuthContext();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await instance.post("login", { ...loginData });
-      navigate("/");
+      setLoading(true);
+      const { data } = await instance.post('login', { ...loginData });
+      localStorage.setItem('chat-user', JSON.stringify(data));
+      setAuthUser(data);
+      navigate('/');
     } catch (error) {
-      console.log("🚀 ~ handleSubmit ~ error:", error);
+      console.log('🚀 ~ handleSubmit ~ error:', error);
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -29,7 +39,7 @@ const Login = () => {
               />
             </a>
             <div className="max-w-lg mt-16 px-6 max-lg:hidden">
-              <h3 className="text-3xl font-bold text-white">Sign in</h3>
+              <h3 className="text-3xl font-bold text-white">Login</h3>
               <p className="text-sm mt-4 text-white">
                 Embark on a seamless journey as you join our vibrant chat
                 community. Unlock a world of endless conversations and
@@ -40,7 +50,7 @@ const Login = () => {
           <div className="bg-white my-4 rounded-xl sm:px-6 px-4 py-8 max-w-md w-full h-max shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto">
             <form onSubmit={handleSubmit}>
               <div className="mb-10">
-                <h3 className="text-3xl font-extrabold">Sign in</h3>
+                <h3 className="text-3xl font-extrabold">Login</h3>
               </div>
               <div>
                 <label className="text-sm mb-2 block">User name</label>
@@ -60,7 +70,8 @@ const Login = () => {
                     fill="#bbb"
                     stroke="#bbb"
                     className="w-[18px] h-[18px] absolute right-4"
-                    viewBox="0 0 24 24">
+                    viewBox="0 0 24 24"
+                  >
                     {/* Circle SVG Path */}
                     {/* Path SVG Path */}
                   </svg>
@@ -84,7 +95,8 @@ const Login = () => {
                     fill="#bbb"
                     stroke="#bbb"
                     className="w-[18px] h-[18px] absolute right-4 cursor-pointer"
-                    viewBox="0 0 128 128">
+                    viewBox="0 0 128 128"
+                  >
                     {/* Path SVG Path */}
                   </svg>
                 </div>
@@ -92,15 +104,22 @@ const Login = () => {
               <div className="mt-10">
                 <button
                   type="submit"
-                  className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
-                  Log in
+                  className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner "></span>
+                  ) : (
+                    'Login'
+                  )}
                 </button>
               </div>
               <p className="text-sm mt-6 text-center">
                 Don't have an account
                 <a
                   href="/register"
-                  className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">
+                  className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
+                >
                   Register here
                 </a>
               </p>
