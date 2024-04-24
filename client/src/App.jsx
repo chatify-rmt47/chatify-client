@@ -1,52 +1,60 @@
 import {
   createBrowserRouter,
-  redirect,
   RouterProvider,
+  Navigate,
+  Route,
+  Routes,
 } from "react-router-dom";
-// import HomePage from "./pages/home/Home";
 import "./App.css";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+import { useAuthContext } from "./contexts/AuthContext";
 
-const router = createBrowserRouter([
-  {
-    path: "/signup",
-    element: <Signup />,
-    loader: () => {
-      if (localStorage.token) {
-        return redirect("/");
-      }
-      return null;
-    },
-  },
-  {
-    path: "/login",
-    element: <Login />,
-    loader: () => {
-      if (localStorage.token) {
-        return redirect("/");
-      }
-      return null;
-    },
-  },
-  // {
-  //   path: "/",
-  //   element: <HomePage />,
-  //   // loader: () => {
-  //   //     if (!localStorage.token) {
-  //   //         return redirect("/login");
-  //   //     }
-  //   //     return null;
-  //   // },
-  // },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/signup",
+//     element: () => {
+//       !authUser ? <Signup /> : <Home />;
+//     },
+//   },
+//   {
+//     path: "/login",
+//     element: () => {
+//       !authUser ? <Login /> : <Home />;
+//     },
+//   },
+//   {
+//     path: "/",
+//     element: () => {
+//       authUser ? <Home /> : <Login />;
+//     },
+//   },
+// ]);
 
-function App() {
+const App = () => {
+  // const { authUser } = useAuthContext();
+  // // console.log("🚀 ~ App ~ authUser:", authUser);
+
+  // return <RouterProvider router={router} />;
   return (
     <>
-      <RouterProvider router={router} />
+      <Routes>
+        <Route
+          path="/"
+          element={authUser ? <Home /> : <Navigate to={"/login"} />}
+        />
+        <Route
+          path="/login"
+          element={authUser ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={authUser ? <Navigate to="/" /> : <SignUp />}
+        />
+      </Routes>
     </>
   );
-}
+};
 
 export default App;

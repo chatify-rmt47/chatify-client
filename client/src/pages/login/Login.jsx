@@ -50,7 +50,7 @@ const Login = () => {
                     type="text"
                     value={loginData.username}
                     onChange={(e) =>
-                      setSignUpData({ ...loginData, username: e.target.value })
+                      setLoginData({ ...loginData, username: e.target.value })
                     }
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                     placeholder="Enter user name"
@@ -74,7 +74,7 @@ const Login = () => {
                     type="password"
                     value={loginData.password}
                     onChange={(e) =>
-                      setSignUpData({ ...loginData, password: e.target.value })
+                      setLoginData({ ...loginData, password: e.target.value })
                     }
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                     placeholder="Enter password"
