@@ -8,11 +8,7 @@ const Message = ({ message }) => {
         (state) => state.conversation.selectedConversation
     );
     const fromMe = message.SenderId === authUser._id;
-    //   console.log(
-    //     "🚀 ~ Message ~ authUser._id:",
-    //     authUser._id + " ====== " + message.SenderId
-    //   );
-    // console.log("🚀 ~ Message ~ fromMe:", fromMe);
+
     const formattedTime = extractTime(message.createdAt);
     const chatClassName = fromMe ? "chat-end" : "chat-start";
     const profilePic = fromMe
@@ -24,7 +20,6 @@ const Message = ({ message }) => {
 
     return (
         <div className={`chat ${chatClassName}`}>
-            {/* <div className={`chat chat-end`}> */}
             <div className="chat-image avatar">
                 <div className="w-10 rounded-full">
                     <img
@@ -35,7 +30,6 @@ const Message = ({ message }) => {
             </div>
             <div
                 className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2`}
-                // className={`chat-bubble text-white bg-blue-500`}
             >
                 {message.messages}
             </div>

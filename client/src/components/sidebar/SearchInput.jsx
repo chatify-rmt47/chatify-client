@@ -2,28 +2,32 @@ import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import useGetConversations from "../../hooks/useGetConversations";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSelectedConversation } from "../../store/conversationSlice";
 
 const SearchInput = () => {
     const [search, setSearch] = useState("");
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { conversations } = useGetConversations();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!search) return;
         if (search.length < 3) {
-        	return toast.error("Search term must be at least 3 characters long");
-    };
+            return toast.error(
+                "Search term must be at least 3 characters long"
+            );
+        }
 
-    	const conversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
+        const conversation = conversations.find((c) =>
+            c.fullName.toLowerCase().includes(search.toLowerCase())
+        );
         console.log(conversation);
 
-    	if (conversation) {
+        if (conversation) {
             dispatch(setSelectedConversation(conversation));
-    		setSearch("");
-    	} else toast.error("No such user found!");
+            setSearch("");
+        } else toast.error("No such user found!");
     };
     return (
         <form onSubmit={handleSubmit} className="flex items-center gap-2">
@@ -44,4 +48,3 @@ const SearchInput = () => {
     );
 };
 export default SearchInput;
-
