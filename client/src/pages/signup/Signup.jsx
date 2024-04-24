@@ -1,31 +1,41 @@
-import React, { useState } from "react";
-import instance from "../../utils/axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import instance from '../../utils/axios';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 const Signup = () => {
+  const [loading, setLoading] = useState(false);
+  const { setAuthUser } = useAuthContext();
   const navigate = useNavigate();
   const [signUpData, setSignUpData] = useState({
-    fullName: "",
-    username: "",
-    password: "",
-    confirmPassword: "",
-    gender: "",
+    fullName: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+    gender: '',
   });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await instance.post("signup", { ...signUpData });
+      setLoading(false);
+      const { data } = await instance.post('signup', { ...signUpData });
       // const { data } = await axios({
       //   url: import.meta.env.VITE_URL_SERVER + "signup",
       //   methode: "POST",
       //   data: signUpData,
       // });
       // console.log("🚀 ~ handleSubmit ~ data:", data);
-      navigate("/login");
+      localStorage.setItem('chat-user', JSON.stringify(data));
+      setAuthUser(data);
+      navigate('/');
     } catch (error) {
-      console.log("🚀 ~ handleSubmit ~ error:", error);
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -116,7 +126,9 @@ const Signup = () => {
                   onChange={(e) =>
                     setSignUpData({ ...signUpData, gender: e.target.value })
                   }
-                  className="bg-gray-100 w-full text-sm px-4 py-3 rounded-md outline-blue-500">
+                  className="bg-gray-100 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
+                >
+                  <option value={undefined}>--please select gender--</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
@@ -125,8 +137,14 @@ const Signup = () => {
             <div className="mt-10">
               <button
                 type="submit"
-                className="min-w-[150px] py-3 px-4 text-sm font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all">
-                Sign up
+                className="min-w-[150px] py-3 px-4 text-sm font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all"
+                disabled={loading}
+              >
+                {loading ? (
+                  <span className="loading loading-spinner "></span>
+                ) : (
+                  'Sign up'
+                )}
               </button>
             </div>
           </form>
