@@ -1,52 +1,36 @@
-import {
-  createBrowserRouter,
-  redirect,
-  RouterProvider,
-} from "react-router-dom";
-// import HomePage from "./pages/home/Home";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+import { useAuthContext } from "./contexts/AuthContext";
+
+const { authUser } = useAuthContext();
+console.log("🚀 ~ App ~ authUser:", authUser);
 
 const router = createBrowserRouter([
   {
     path: "/signup",
-    element: <Signup />,
-    loader: () => {
-      if (localStorage.token) {
-        return redirect("/");
-      }
-      return null;
+    element: () => {
+      !authUser ? <Signup /> : <Home />;
     },
   },
   {
     path: "/login",
-    element: <Login />,
-    loader: () => {
-      if (localStorage.token) {
-        return redirect("/");
-      }
-      return null;
+    element: () => {
+      !authUser ? <Login /> : <Home />;
     },
   },
-  // {
-  //   path: "/",
-  //   element: <HomePage />,
-  //   // loader: () => {
-  //   //     if (!localStorage.token) {
-  //   //         return redirect("/login");
-  //   //     }
-  //   //     return null;
-  //   // },
-  // },
+  {
+    path: "/",
+    element: () => {
+      authUser ? <Home /> : <Login />;
+    },
+  },
 ]);
 
-function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
-}
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
