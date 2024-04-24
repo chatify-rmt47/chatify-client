@@ -49,7 +49,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit} className="sm:p-6 p-4 w-full">
             <div className="mb-6">
               <h3 className="text-blue-500 text-3xl font-extrabold max-md:text-center">
-                Register
+                Sign Up
               </h3>
             </div>
             <div className="grid lg:grid-cols-2 gap-y-7 gap-x-7">
