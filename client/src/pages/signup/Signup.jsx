@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import instance from '../../utils/axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuthContext } from '../../contexts/AuthContext';
 
@@ -41,7 +41,7 @@ const Signup = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center font-[sans-serif] bg-gradient-to-r from-blue-800 to-blue-500 text-[#333] lg:h-screen p-6">
+      <div className="flex flex-col justify-center items-center font-[sans-serif] bg-gradient-to-r  text-[#333] lg:h-screen p-6">
         <div className="grid md:grid-cols-2 items-center gap-y-8 bg-white max-w-7xl w-full shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
           <div className="max-md:order-1 flex flex-col justify-center sm:p-6 p-4 bg-gradient-to-r from-blue-600 to-blue-700 w-full h-full space-y-16">
             <div className="max-w-md space-y-12 mx-auto">
@@ -134,7 +134,7 @@ const Signup = () => {
                 </select>
               </div>
             </div>
-            <div className="mt-10">
+            <div className="mt-10 flex items-center justify-center">
               <button
                 type="submit"
                 className="min-w-[150px] py-3 px-4 text-sm font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all"
@@ -146,6 +146,17 @@ const Signup = () => {
                   'Sign up'
                 )}
               </button>
+            </div>
+            <div className="mt-4 flex items-center justify-center">
+              <p>
+                Already have an account?{' '}
+                <Link
+                  to={'/login'}
+                  className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
+                >
+                  Login now
+                </Link>
+              </p>
             </div>
           </form>
         </div>
