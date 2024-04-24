@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import instance from '../../utils/axios';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { useAuthContext } from '../../contexts/AuthContext';
+import React, { useState } from "react";
+import instance from "../../utils/axios";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({ username: '', password: '' });
+  const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
 
@@ -15,12 +15,12 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const { data } = await instance.post('login', { ...loginData });
-      localStorage.setItem('chat-user', JSON.stringify(data));
+      const { data } = await instance.post("login", { ...loginData });
+      localStorage.setItem("chat-user", JSON.stringify(data));
       setAuthUser(data);
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.log('🚀 ~ handleSubmit ~ error:', error);
+      console.log("🚀 ~ handleSubmit ~ error:", error);
       toast.error(error.response.data.message);
     } finally {
       setLoading(false);
@@ -70,8 +70,7 @@ const Login = () => {
                     fill="#bbb"
                     stroke="#bbb"
                     className="w-[18px] h-[18px] absolute right-4"
-                    viewBox="0 0 24 24"
-                  >
+                    viewBox="0 0 24 24">
                     {/* Circle SVG Path */}
                     {/* Path SVG Path */}
                   </svg>
@@ -95,8 +94,7 @@ const Login = () => {
                     fill="#bbb"
                     stroke="#bbb"
                     className="w-[18px] h-[18px] absolute right-4 cursor-pointer"
-                    viewBox="0 0 128 128"
-                  >
+                    viewBox="0 0 128 128">
                     {/* Path SVG Path */}
                   </svg>
                 </div>
@@ -105,23 +103,21 @@ const Login = () => {
                 <button
                   type="submit"
                   className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
-                  disabled={loading}
-                >
+                  disabled={loading}>
                   {loading ? (
                     <span className="loading loading-spinner "></span>
                   ) : (
-                    'Login'
+                    "Login"
                   )}
                 </button>
               </div>
               <p className="text-sm mt-6 text-center">
                 Don't have an account
-                <a
-                  href="/register"
-                  className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
-                >
+                <Link
+                  to="/signup"
+                  className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">
                   Register here
-                </a>
+                </Link>
               </p>
             </form>
           </div>
