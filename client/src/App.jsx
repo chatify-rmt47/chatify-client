@@ -5,12 +5,12 @@ import {
 } from "react-router-dom";
 // import HomePage from "./pages/home/Home";
 import "./App.css";
-import Signup from "./pages/signup/signup";
-import Login from "./pages/login/login";
+import Signup from "./pages/signup/Signup";
+import Login from "./pages/login/Login";
 
 const router = createBrowserRouter([
   {
-    path: "/register",
+    path: "/signup",
     element: <Signup />,
     loader: () => {
       if (localStorage.token) {
