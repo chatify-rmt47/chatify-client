@@ -31,9 +31,9 @@ const Login = () => {
             <div className="max-w-lg mt-16 px-6 max-lg:hidden">
               <h3 className="text-3xl font-bold text-white">Sign in</h3>
               <p className="text-sm mt-4 text-white">
-                Embark on a seamless journey as you sign in to your account.
-                Unlock a realm of opportunities and possibilities that await
-                you.
+                Embark on a seamless journey as you join our vibrant chat
+                community. Unlock a world of endless conversations and
+                connections that await you.
               </p>
             </div>
           </div>
