@@ -1,0 +1,22 @@
+[
+    {
+        "_id": "6627c0f597a138f7c8fe8b1b",
+        "fullName": "Padila",
+        "username": "padila",
+        "gender": "male",
+        "profilePic": "https://avatar.iran.liara.run/public/boy?username=John2",
+        "createdAt": "2024-04-23T14:08:53.409Z",
+        "updatedAt": "2024-04-23T14:08:53.409Z",
+        "__v": 0
+    },
+    {
+        "_id": "6627c81ea89c680cc454e9b5",
+        "fullName": "John Doe",
+        "username": "John3",
+        "gender": "male",
+        "profilePic": "https://avatar.iran.liara.run/public/boy?username=John3",
+        "createdAt": "2024-04-23T14:39:26.515Z",
+        "updatedAt": "2024-04-23T14:39:26.515Z",
+        "__v": 0
+    }
+]
