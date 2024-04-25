@@ -21,7 +21,6 @@ const useGetConversations = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(data, "data user from db");
 
                 setConversations(data);
             } catch (error) {

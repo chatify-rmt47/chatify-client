@@ -21,7 +21,6 @@ const Login = () => {
             setAuthUser(data);
             navigate("/");
         } catch (error) {
-            // console.log("🚀 ~ handleSubmit ~ error:", error);
             toast.error(error.response.data.message);
         } finally {
             setLoading(false);
