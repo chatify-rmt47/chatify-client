@@ -28,7 +28,7 @@ const Messages = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log("🚀 ~ getMessages ~ data:", data);
+
                 if (data.error) throw new Error(data.error);
                 dispatch(setMessages(data));
             } catch (error) {
@@ -52,7 +52,6 @@ const Messages = () => {
 
     return (
         <div className="px-4 flex-1 overflow-auto">
-            {console.log(messages)}
             {!loading &&
                 messages.length > 0 &&
                 messages.map((message) => (
